@@ -16,3 +16,23 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+a {
+    all: unset;
+    color: blue; /* Defina a cor desejada */
+    text-decoration: none; /* Se não quiser sublinhado */
+}  
+
+/* Estilo para o overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+    z-index: 9999; /* Garante que o loading ficará acima de outros elementos */
+  }
