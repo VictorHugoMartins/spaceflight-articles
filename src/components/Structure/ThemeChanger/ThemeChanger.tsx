@@ -1,20 +1,8 @@
 import React, { useContext } from 'react';
-import { Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { createTheme } from '@mui/material';
 import { ThemeContext } from '../../../contexts/ThemeContext';
-
-const customColors = {
-  alabaster: '#E8EBE4',
-  frenchGray: '#D2D5DD',
-  coolGray: '#999AC6',
-  raisinBlack: '#171829',
-  black: '#07070F',
-  battleshipGray: '#798071',
-  secondaryText: '#B8BACF',
-  highlight: '#4A90E2', // azul de destaque adicional
-  danger: '#FF5733',
-  success: '#28A745',
-};
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 
 const ThemeChanger: React.FC = () => {
   const context = useContext(ThemeContext);
@@ -33,38 +21,38 @@ const ThemeChanger: React.FC = () => {
         palette: {
           mode: newMode,
           primary: {
-            main: customColors.coolGray,
+            main: newMode === 'dark' ? '#90caf9' : '#1976d2',
           },
           secondary: {
-            main: customColors.battleshipGray,
+            main: newMode === 'dark' ? '#f48fb1' : '#9c27b0',
           },
           background: {
-            default: newMode === 'dark' ? customColors.black : customColors.alabaster,
-            paper: newMode === 'dark' ? customColors.raisinBlack : customColors.frenchGray,
+            default: newMode === 'dark' ? '#121212' : '#ffffff',
+            paper: newMode === 'dark' ? '#1e1e1e' : '#f5f5f5',
           },
           text: {
-            primary: newMode === 'dark' ? customColors.alabaster : customColors.raisinBlack,
-            secondary: newMode === 'dark' ? customColors.secondaryText : customColors.black,
+            primary: newMode === 'dark' ? '#ffffff' : '#000000',
+            secondary: newMode === 'dark' ? '#bdbdbd' : '#616161',
           },
         },
         typography: {
           fontFamily: 'Roboto, Arial, sans-serif',
           fontSize: 14,
           h1: {
-            color: newMode === 'dark' ? customColors.coolGray : customColors.black,
+            color: newMode === 'dark' ? '#90caf9' : '#1976d2',
           },
           h2: {
-            color: newMode === 'dark' ? customColors.secondaryText : customColors.raisinBlack,
+            color: newMode === 'dark' ? '#f48fb1' : '#9c27b0',
           },
         },
         components: {
           MuiButton: {
             styleOverrides: {
               root: {
-                backgroundColor: customColors.coolGray,
-                color: customColors.alabaster,
+                backgroundColor: newMode === 'dark' ? '#90caf9' : '#1976d2',
+                color: '#ffffff',
                 '&:hover': {
-                  backgroundColor: customColors.battleshipGray,
+                  backgroundColor: newMode === 'dark' ? '#42a5f5' : '#1565c0',
                 },
               },
             },
@@ -75,9 +63,9 @@ const ThemeChanger: React.FC = () => {
   };
 
   return (
-    <Button onClick={toggleTheme} variant="contained" color="primary">
-      {theme.palette.mode === 'dark' ? 'Modo Claro' : 'Modo Escuro'}
-    </Button>
+    <IconButton onClick={toggleTheme} color="inherit">
+      {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+    </IconButton>
   );
 };
 

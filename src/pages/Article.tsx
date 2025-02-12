@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa';
 import { Container, Grid, Typography, Button, Box, Paper } from '@mui/material';
 import { useArticle } from '../contexts/ArticleContext';
@@ -8,7 +8,6 @@ import Footer from '../components/Structure/Footer';
 
 const Article: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const { article, loadArticle } = useArticle();
 
   useEffect(() => {
@@ -20,8 +19,8 @@ const Article: React.FC = () => {
   }, [article]);
 
   useEffect(() => {
-    if ( id ) loadArticle(id.toString());
-  }, [id]);
+    if (id) loadArticle(id.toString());
+  }, [id, loadArticle]);
 
   if (!article) {
     return <div>Loading...</div>;
@@ -48,7 +47,7 @@ const Article: React.FC = () => {
               <Typography variant="h6" sx={{ mt: 2 }}>
                 Summary
               </Typography>
-              <Typography variant="body1">{article.summary}</Typography>
+              <Typography variant="body1">{article?.summary || "Not available"}</Typography>
               <Button
                 variant="contained"
                 color="primary"
@@ -65,17 +64,21 @@ const Article: React.FC = () => {
           <Grid item xs={12} md={8}>
             <Box id="article-details" sx={{ mb: 4 }}>
               <Typography variant="h4">{article.title}</Typography>
+              {article?.published_at && 
               <Typography variant="body1" sx={{ mt: 2 }}>
                 Published by{' '}
                 <strong>{article.authors?.map((author: any) => author.name).join(', ')}</strong> on{' '}
                 {new Date(article.published_at).toLocaleDateString()}
               </Typography>
+              }
+                {article?.updated_at && 
               <Box className="article-meta" sx={{ mt: 2 }}>
                 <Typography variant="body2">News Site: {article.news_site}</Typography>
                 <Typography variant="body2">
                   Last Updated: {new Date(article.updated_at).toLocaleDateString()}
                 </Typography>
               </Box>
+                }
             </Box>
           </Grid>
         </Grid>

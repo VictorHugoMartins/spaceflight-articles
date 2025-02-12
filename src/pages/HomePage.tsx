@@ -46,11 +46,11 @@ const HomePage: React.FC = () => {
       if (isFeatured) filterParams += `&is_featured=true`;
       if (publishedAfter) filterParams += `&published_at_gte=${publishedAfter}`;
       if (searchPhrase) filterParams += `&search=${searchPhrase}`;
-
+      
       url += `?ordering=${selectedSort}${filterParams}`;
 
-      const { data } = await getData(url);
-      setArticles(data.results);
+      const { data } = (await getData(url)) || {};
+      setArticles(data?.results);
     } catch (error) {
       console.error('Error loading articles:', error);
     } finally {

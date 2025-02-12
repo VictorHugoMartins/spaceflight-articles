@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { indigo } from '@mui/material/colors';
 
 const WelcomeSection: React.FC = () => {
   const theme = useTheme();
@@ -9,10 +10,12 @@ const WelcomeSection: React.FC = () => {
     <Container
       component="header"
       sx={{
-        background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+        background: indigo[900],
         color: theme.palette.text.primary,
         p: 2,
         mb: 4,
+        borderBottomLeftRadius: 2,
+        borderBottomRightRadius: 2,
       }}
       maxWidth={false}
     >
@@ -20,7 +23,7 @@ const WelcomeSection: React.FC = () => {
         Hello Houston!
       </Typography>
       <Typography variant="body1">
-        Get an overview of the latest Spaceflight news, from various sources!
+        Get an overview of the latest Spaceflight news, from various sources! Based on <a href="https://spaceflightnewsapi.net/">Space Flightnews API</a>
       </Typography>
     </Container>
   );

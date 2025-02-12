@@ -22,7 +22,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
           component="img"
           height="140"
           image={article.image_url}
-          alt={article.title}
+          alt={`image_${article.id}`}
         />
         <CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -33,10 +33,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
           <Typography variant="body2" color="text.secondary">
             {article.summary}
           </Typography>
-          <span>
-            Publicado por{' '}
-            {article.authors.map((author) => author.name).join(', ')}
-          </span>
+          { article?.authors?.length > 0 &&
+            <span>
+              Published by{' '}
+              {article.authors.map((author) => author.name).join(', ')}
+            </span>
+          }
         </CardContent>
       </Card>
     </Grid>

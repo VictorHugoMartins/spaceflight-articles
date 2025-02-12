@@ -9,14 +9,17 @@ const Header: React.FC = () => {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: theme.palette.primary.main }}>
-      <Container>
-        <Toolbar disableGutters>
+      <Container sx={{
+          p: 0,
+        }}
+        maxWidth={false}>
+        <Toolbar disableGutters >
           <Typography 
             variant="h6" 
             component="div" 
             sx={{
               flexGrow: 1, 
-              color: theme.palette.text.primary,
+              color: theme.palette.text.primary
             }}
           >
             <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
