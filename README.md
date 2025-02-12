@@ -20,4 +20,12 @@ Após a filtragem ou pesquisa, o usuário pode clicar nos artigos para ver os de
 
 - Links Externos: Cada notícia vem com um link direto para o site de origem da informação.
 
+# Como executar?
+
+
+
+## Próximos Passos
+
+- Empacontamento para Desktop via React Electron
+
 Desenvolvido por Victor Martins.
